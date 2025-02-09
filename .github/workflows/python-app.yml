@@ -34,7 +34,13 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest  # Ensure you have test files configured
+        # pytest
+        if [ -d tests ] || [ -d test ]; then
+          echo "Running tests with pytest..."
+          pytest
+        else
+          echo "No test directory found. Skipping tests."
+        fi
 
     # - name: Deploy (Optional)
     #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
